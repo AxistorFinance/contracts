@@ -2,13 +2,13 @@
 
 AXOR Token : 
 
-Address : 0x3DAd45506F1878e13Cc10f5c9116f9E66cAdA0E3
+Address : 0x6E598eD967040Dd6EB46D24a4ad332d437EdA39b
 
-BSC contract code : https://bscscan.com/address/0x3DAd45506F1878e13Cc10f5c9116f9E66cAdA0E3#code
+BSC contract code : https://bscscan.com/address/0x6E598eD967040Dd6EB46D24a4ad332d437EdA39b#code
 
 AXOR Masterchef : 
 
-Address : 0xF34917d887248afC80FCb248f8097a58A1AbD2aE
+Address : 0x2D9c50d1A47AE77d09690eB8cFB94D2bA0a310B7
 
-BSC contract code : https://bscscan.com/address/0xF34917d887248afC80FCb248f8097a58A1AbD2aE#code
+BSC contract code : https://bscscan.com/address/0x2D9c50d1A47AE77d09690eB8cFB94D2bA0a310B7#code
 

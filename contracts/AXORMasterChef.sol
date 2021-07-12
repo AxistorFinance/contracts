@@ -253,8 +253,22 @@ contract MasterChef is Ownable, ReentrancyGuard {
         PoolInfo storage pool = poolInfo[_pid];
         UserInfo storage user = userInfo[_pid][msg.sender];
 
+        uint256 diffBlocks = 0;
+        uint256 diffTime = 0;
+        if( startBlock > block.number ){
+            diffBlocks = startBlock-block.number;
+            diffTime = diffBlocks.mul(3);
+        } else {
+            diffBlocks = block.number - startBlock;
+            diffTime = diffBlocks.mul(3);
+        }
+
         if (user.nextHarvestUntil == 0) {
-            user.nextHarvestUntil = block.timestamp.add(pool.harvestInterval);
+            if (startBlock > block.number) {
+                user.nextHarvestUntil = block.timestamp.add(diffTime).add(pool.harvestInterval);
+            } else {
+                user.nextHarvestUntil = block.timestamp.add(pool.harvestInterval);
+            }
         }
 
         uint256 pending = user.amount.mul(pool.accAxorPerShare).div(1e12).sub(user.rewardDebt);
@@ -265,7 +279,11 @@ contract MasterChef is Ownable, ReentrancyGuard {
                 // reset lockup
                 totalLockedUpRewards = totalLockedUpRewards.sub(user.rewardLockedUp);
                 user.rewardLockedUp = 0;
-                user.nextHarvestUntil = block.timestamp.add(pool.harvestInterval);
+                if (startBlock > block.number) {
+                    user.nextHarvestUntil = block.timestamp.add(diffTime).add(pool.harvestInterval);
+                } else {
+                    user.nextHarvestUntil = block.timestamp.add(pool.harvestInterval);
+                }
 
                 // send rewards
                 safeAxorTransfer(msg.sender, totalRewards);
